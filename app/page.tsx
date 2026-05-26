@@ -229,7 +229,6 @@ function Nav() {
         <details className="nav-social-menu">
           <summary className="nav-social-trigger" aria-label="Social media links">
             <span className="nav-social-mark">@</span>
-            <span className="nav-social-label">تواصل</span>
           </summary>
           <div className="nav-social-options">
             {SOCIAL_LINKS.map((s) => (
