@@ -170,13 +170,12 @@ function useLiveClock(ref: React.RefObject<HTMLElement | null>) {
 /* ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Nav ────────────────────────────────────────────────────── */
-type SocialKind = "facebook" | "instagram" | "youtube" | "messenger";
+type SocialKind = "facebook" | "instagram" | "youtube";
 
 const SOCIAL_LINKS: { label: string; href: string; icon: SocialKind }[] = [
   { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61555569658381", icon: "facebook" },
   { label: "Instagram", href: "https://www.instagram.com/afefdjmal", icon: "instagram" },
   { label: "YouTube", href: "https://www.youtube.com/@afefdjmal", icon: "youtube" },
-  { label: "Messenger", href: "https://m.me/afefdjmal", icon: "messenger" },
 ];
 
 function SocialIcon({ icon }: { icon: SocialKind }) {
@@ -207,12 +206,7 @@ function SocialIcon({ icon }: { icon: SocialKind }) {
     );
   }
 
-  return (
-    <svg className="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 3.3c-5.1 0-9.2 3.8-9.2 8.5 0 2.7 1.4 5.1 3.6 6.6v3l3.3-1.8c.8.2 1.5.3 2.3.3 5.1 0 9.2-3.8 9.2-8.5S17.1 3.3 12 3.3Z" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
-      <path d="m7.5 13.1 3-3 2.3 2.1 3.7-3.2-3.1 4.2-2.6-2.1-3.3 2Z" fill="currentColor" />
-    </svg>
-  );
+  return null;
 }
 
 function Nav() {
