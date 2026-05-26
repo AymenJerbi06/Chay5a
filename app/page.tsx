@@ -170,6 +170,51 @@ function useLiveClock(ref: React.RefObject<HTMLElement | null>) {
 /* ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Nav ────────────────────────────────────────────────────── */
+type SocialKind = "facebook" | "instagram" | "youtube" | "messenger";
+
+const SOCIAL_LINKS: { label: string; href: string; icon: SocialKind }[] = [
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61555569658381", icon: "facebook" },
+  { label: "Instagram", href: "https://www.instagram.com/afefdjmal", icon: "instagram" },
+  { label: "YouTube", href: "https://www.youtube.com/@afefdjmal", icon: "youtube" },
+  { label: "Messenger", href: "https://m.me/afefdjmal", icon: "messenger" },
+];
+
+function SocialIcon({ icon }: { icon: SocialKind }) {
+  if (icon === "facebook") {
+    return (
+      <svg className="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14.2 8.3V6.7c0-.8.6-1.1 1.2-1.1h1.7V2.7c-.9-.1-1.8-.2-2.7-.2-2.7 0-4.5 1.6-4.5 4.6v1.2H7v3.2h2.9v9.9h3.6v-9.9h2.8l.5-3.2h-3.1Z" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (icon === "instagram") {
+    return (
+      <svg className="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="16.8" cy="7.2" r="1.1" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (icon === "youtube") {
+    return (
+      <svg className="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="6.5" width="18" height="11" rx="3.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <path d="m10.4 9.5 4.6 2.5-4.6 2.5v-5Z" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3.3c-5.1 0-9.2 3.8-9.2 8.5 0 2.7 1.4 5.1 3.6 6.6v3l3.3-1.8c.8.2 1.5.3 2.3.3 5.1 0 9.2-3.8 9.2-8.5S17.1 3.3 12 3.3Z" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      <path d="m7.5 13.1 3-3 2.3 2.1 3.7-3.2-3.1 4.2-2.6-2.1-3.3 2Z" fill="currentColor" />
+    </svg>
+  );
+}
+
 function Nav() {
   return (
     <nav className="nav">
@@ -180,10 +225,28 @@ function Nav() {
       </div>
       <span className="nav-logo">عَفَاف الجَمَل</span>
       <div className="nav-right">
-        <a href="#contact"   className="nav-link">تواصل</a>
-        <a href="https://www.facebook.com/profile.php?id=61555569658381"  target="_blank" rel="noopener noreferrer" className="nav-link">FB</a>
-        <a href="https://www.instagram.com/afefdjmal" target="_blank" rel="noopener noreferrer" className="nav-link">IG</a>
-        <a href="https://www.youtube.com/@afefdjmal"  target="_blank" rel="noopener noreferrer" className="nav-link">YT</a>
+        <a href="#contact" className="nav-link nav-contact">تواصل</a>
+        <details className="nav-social-menu">
+          <summary className="nav-social-trigger" aria-label="Social media links">
+            <span className="nav-social-mark">@</span>
+            <span className="nav-social-label">socials</span>
+          </summary>
+          <div className="nav-social-options">
+            {SOCIAL_LINKS.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-social-option"
+                aria-label={s.label}
+                title={s.label}
+              >
+                <SocialIcon icon={s.icon} />
+              </a>
+            ))}
+          </div>
+        </details>
       </div>
     </nav>
   );
@@ -246,13 +309,6 @@ function About() {
   const clockRef = useRef<HTMLSpanElement>(null);
   useLiveClock(clockRef);
 
-  const socials = [
-    { label: "FB",  href: "https://www.facebook.com/profile.php?id=61555569658381" },
-    { label: "IG",  href: "https://www.instagram.com/afefdjmal" },
-    { label: "YT",  href: "https://www.youtube.com/@afefdjmal" },
-    { label: "MSG", href: "https://m.me/afefdjmal" },
-  ];
-
   return (
     <section className="about-section" id="about">
       <div className="about-photo-wrap reveal-scale">
@@ -290,9 +346,18 @@ function About() {
         </p>
 
         <div className="about-socials reveal d3">
-          {socials.map((s) => (
-            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
-               className="about-social-icon">{s.label}</a>
+          {SOCIAL_LINKS.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="about-social-icon"
+              aria-label={s.label}
+              title={s.label}
+            >
+              <SocialIcon icon={s.icon} />
+            </a>
           ))}
         </div>
 
@@ -550,14 +615,18 @@ function Footer() {
           <li><a href="#contact">المجتمع</a></li>
         </ul>
         <div className="footer-socials">
-          {[
-            { l: "FB",  h: "https://www.facebook.com/profile.php?id=61555569658381" },
-            { l: "IG",  h: "https://www.instagram.com/afefdjmal" },
-            { l: "YT",  h: "https://www.youtube.com/@afefdjmal" },
-            { l: "MSG", h: "https://m.me/afefdjmal" },
-          ].map((s) => (
-            <a key={s.l} href={s.h} target="_blank" rel="noopener noreferrer"
-               className="footer-social">{s.l}</a>
+          {SOCIAL_LINKS.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social"
+              aria-label={s.label}
+              title={s.label}
+            >
+              <SocialIcon icon={s.icon} />
+            </a>
           ))}
         </div>
       </div>
