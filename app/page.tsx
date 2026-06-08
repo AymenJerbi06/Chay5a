@@ -261,8 +261,8 @@ function Hero() {
 
       <p className="hero-sub">
         مُقرئة تونسية<br />
-        إجازة في القراءات العشر<br />
-        بسند متّصل
+        مجازة في القراءات الصغرى والكبرى<br />
+        بسند متّصل إلى رسول الله ﷺ
       </p>
 
       <h1 className="hero-last">الجَمَل</h1>
@@ -308,16 +308,15 @@ function About() {
         <img src="/media/Main Photo of her.jpg" alt="الأستاذة عفاف الجمل" />
         <p className="about-photo-label">
           مُقرئة تونسية<br />
-          عالمة القراءات العشر
+          مدرّسة للقرآن وعلومه
         </p>
       </div>
 
       <div className="about-content">
         <p className="about-body reveal">
-          إحدى العالمات القلائل في العالم اللواتي جمعن بين{" "}
-          <strong>الإجازة في القراءات العشر الكبرى</strong> والانفتاح على
-          مجتمع رقمي واسع — تحمل العلم الشريف وتوصله إلى آلاف القلوب
-          عبر منصات التواصل الاجتماعي كل يوم.
+          تحمل الأستاذة عفاف الجمل علم القرآن بروحٍ تربوية هادئة؛ تجمع بين
+          الإتقان والرعاية، وتفتح أبواب التعلّم للنساء والفتيات ولطلبة كتاب الله
+          عبر الحضور المباشر والمنصات الرقمية.
         </p>
         <p className="about-body reveal d1">
           تقدّم سلاسل تعليمية وروحية متنوعة: <strong>تحفيظ القرآن للأطفال</strong>{" "}
@@ -363,6 +362,77 @@ function About() {
   );
 }
 
+/* ─── Credentials ────────────────────────────────────────────── */
+const CREDENTIALS = [
+  {
+    kicker: "المنشأ",
+    title: "صفاقس، تونس",
+    text: "نشأت في مدينة عُرفت بعنايتها بالقرآن وعلومه، وفي بيئة غرست في قلبها محبة كلام الله منذ البدايات.",
+  },
+  {
+    kicker: "بداية المسيرة",
+    title: "حفظ مبكّر وتدرّج علمي",
+    text: "بدأت حفظ القرآن في سن مبكرة، ثم واصلت دراسة القراءات وعلوم التجويد على أيدي مشايخ متقنين داخل تونس وخارجها.",
+  },
+  {
+    kicker: "التكوين الجامعي",
+    title: "علوم المحاسبة",
+    text: "إلى جانب مسارها القرآني، حصلت على شهادة جامعية في علوم المحاسبة من كلية الاقتصاد والتصرّف بصفاقس.",
+  },
+  {
+    kicker: "التأهيل التعليمي",
+    title: "التجويد والطريقة النورانية",
+    text: "هي مدرّسة مجازة في علم التجويد، ومدرّبة معتمدة في تعليم الطريقة النورانية.",
+  },
+];
+
+const IJAZA_PATHS = [
+  {
+    title: "الإجازة الأولى",
+    text: "إجازة في القراءات العشر الصغرى والكبرى على يد فضيلة الشيخ عبد الفتاح هيكل.",
+  },
+  {
+    title: "الإجازة الثانية",
+    text: "إجازة ثانية في القراءات العشر الصغرى بإشراف فضيلة الشيخ سليم أبو زيدة.",
+  },
+];
+
+function Credentials() {
+  return (
+    <section className="credentials-section">
+      <div className="credentials-heading reveal">
+        <p className="credentials-label">من الموقع الرسمي</p>
+        <h2 className="credentials-title">مسار علمي موثّق</h2>
+      </div>
+
+      <div className="credentials-grid">
+        {CREDENTIALS.map((item, i) => (
+          <article key={item.title} className={`credential-item reveal d${(i % 3) + 1}`}>
+            <p className="credential-kicker">{item.kicker}</p>
+            <h3 className="credential-title">{item.title}</h3>
+            <p className="credential-text">{item.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="ijaza-panel reveal d2">
+        <p className="ijaza-label">الإجازات والسند</p>
+        <div className="ijaza-list">
+          {IJAZA_PATHS.map((item) => (
+            <article key={item.title} className="ijaza-item">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <p className="ijaza-note">
+          ولمن يرغب في نيل إجازات بسند متصل، يمكن التواصل عبر المنصات الرسمية.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Featured Video ─────────────────────────────────────────── */
 function FeaturedVideo() {
   return (
@@ -394,7 +464,7 @@ function FeaturedVideo() {
 
 /* ─── Marquee (platforms) ────────────────────────────────────── */
 const PLATFORMS = [
-  "فيسبوك", "إنستغرام", "يوتيوب", "ماسنجر",
+  "فيسبوك", "إنستغرام", "يوتيوب", "الطريقة النورانية",
   "الجزيرة", "قالون", "ورش", "خلف", "صفاقس",
 ];
 
@@ -650,6 +720,7 @@ export default function Home() {
         <Basmala />
         <Bio />
         <About />
+        <Credentials />
         <FeaturedVideo />
         <Marquee />
         <SelectedVideos />

@@ -26,7 +26,7 @@ const fragmentMono = Fragment_Mono({
 export const metadata: Metadata = {
   title: "الأستاذة عفاف الجمل | Ustadha Afef Djmal",
   description:
-    "مُقرئة تونسية بإجازة في القراءات العشر وسند متصل إلى النبي ﷺ. تنشر نور القرآن بالرحمة والمحبة عبر سلسلة متواترة لا تنقطع.",
+    "مُقرئة تونسية مجازة في القراءات الصغرى والكبرى بسند متصل إلى النبي ﷺ، ومدرّسة مجازة في التجويد ومدرّبة معتمدة في الطريقة النورانية.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
